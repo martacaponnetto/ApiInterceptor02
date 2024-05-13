@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/months")
 public class MonthController {
     @GetMapping("")
-    public Month getMouth(HttpServletRequest request){
-    Month month = (Month) request.getAttribute("month");
+    public Month getMonth(HttpServletRequest request){
+    Month month = (Month) request.getAttribute("selectedMonth");
     return month;
     }
 }

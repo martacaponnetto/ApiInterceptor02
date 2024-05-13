@@ -26,7 +26,7 @@ public class MonthInterceptor implements HandlerInterceptor {
         String monthNumberHeader = request.getHeader("monthNumber");
 
         if (monthNumberHeader == null || monthNumberHeader.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "monthNumber header is missing");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return false;
         }
 
@@ -37,10 +37,10 @@ public class MonthInterceptor implements HandlerInterceptor {
             if (selectedMonth != null) {
                 request.setAttribute("selectedMonth", selectedMonth);
             } else {
-                request.setAttribute("selectedMonth", new Month());
+                request.setAttribute("selectedMonth", new Month(0, "nope", "nope", "nope"));
             }
         } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid monthNumber format");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return false;
         }
 
